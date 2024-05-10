@@ -1,0 +1,155 @@
+.root {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1728px;
+  height: 64px;
+  align-items: flex-start;
+  background-color: #fff;
+  overflow: hidden;
+  box-shadow: inset 0px -1px 0px #e0e0e0;
+}
+.avatar {
+  position: absolute;
+  left: 1320px;
+  top: 12px;
+  width: min-content;
+  height: min-content;
+  align-items: center;
+  gap: 8px;
+}
+.avatar2 {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  align-items: flex-start;
+  border-radius: 1000px;
+  background-color: #f7f7f7;
+  overflow: hidden;
+}
+.rectangle1 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-image:/* webpackIgnore: true */ url('/assets/rectangle1.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.chevronDown {
+  width: 24px;
+  height: 24px;
+}
+.icon {
+  width: 100%;
+  height: 100%;
+}
+.buttons {
+  position: absolute;
+  right: 144px;
+  top: 12px;
+  width: min-content;
+  height: min-content;
+  align-items: flex-start;
+  gap: 12px;
+}
+.button {
+  width: min-content;
+  height: 40px;
+  align-items: center;
+  padding: 0 16px;
+  border-radius: 8px;
+  background-color: #eee;
+}
+.moreHorizontal {
+  width: 24px;
+  height: 24px;
+}
+.icon2 {
+  width: 100%;
+  height: 100%;
+}
+.button2 {
+  width: min-content;
+  height: 40px;
+  align-items: center;
+  padding: 0 16px;
+  border-radius: 8px;
+  background-color: #000;
+}
+.register {
+  color: #fff;
+  font-size: 16px;
+  line-height: 150%;
+  font-weight: 500;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  width: min-content;
+  height: min-content;
+  white-space: nowrap;
+  flex-direction: column;
+}
+.list {
+  position: absolute;
+  left: 299px;
+  top: 19px;
+  width: min-content;
+  height: min-content;
+  align-items: flex-start;
+  gap: 32px;
+}
+.tab {
+  color: #000;
+  font-size: 16px;
+  line-height: 150%;
+  font-weight: 500;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  width: min-content;
+  height: min-content;
+  white-space: nowrap;
+  flex-direction: column;
+}
+.tab2 {
+  color: #000;
+  font-size: 16px;
+  line-height: 150%;
+  font-weight: 500;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  width: min-content;
+  height: min-content;
+  white-space: nowrap;
+  flex-direction: column;
+}
+.tab3 {
+  color: #000;
+  font-size: 16px;
+  line-height: 150%;
+  font-weight: 500;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  width: min-content;
+  height: min-content;
+  white-space: nowrap;
+  flex-direction: column;
+}
+.chatGPT {
+  color: #000;
+  font-size: 20px;
+  line-height: 150%;
+  font-weight: 600;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  letter-spacing: -0.01em;
+  position: absolute;
+  left: 80px;
+  top: 50%;
+  width: min-content;
+  height: min-content;
+  white-space: nowrap;
+  flex-direction: column;
+  transform: translateY(-50%);
+}

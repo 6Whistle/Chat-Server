@@ -3,19 +3,17 @@ from langchain.chat_models.openai import ChatOpenAI
 from langchain.schema import SystemMessage, HumanMessage, AIMessage
 import os
 from dotenv import load_dotenv
-from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
-
-class Request(BaseModel):
-    question: str
-
-class Response(BaseModel):
-    answer: str
+from app.main_router import router
+from app.api.common.model.request import Request
+from app.api.common.model.response import Response
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 app = FastAPI()
+
+app.include_router(router)
 
 origins = ['*']
 
@@ -50,8 +48,8 @@ async def read_root():
     return {"Hello": "World"}
 
 
-@app.post("/chat")
-async def chat(req:Request):
+@app.post("/chat/ai")
+async def chat(req:Request) -> Response:
     chat_model = ChatOpenAI(
         openai_api_key=os.environ["API_KEY"],
         temperature=0.1,
@@ -59,17 +57,4 @@ async def chat(req:Request):
         model_name="gpt-3.5-turbo-0613",
     )
 
-    message = [
-        SystemMessage(content="""
-                        You are a travler. 
-                        You knew the capital of every country in the world.
-                      """, type="system"),
-        HumanMessage(content="Where is the captial of Republic of Korea?", type="human"),
-        AIMessage(content="It's Seoul.", type="ai"),
-    ]
-
-    print(chat_model.predict_messages(message))
-    
-
-    # return item
     return Response(answer=chat_model.predict(req.question))
