@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { SubmitErrorHandler, SubmitHandler, set, useForm } from "react-hook-form";
 
 type ChatForms = {
   response: string;
@@ -17,7 +17,11 @@ export default function Home() {
     formState: { errors },
   } = useForm<ChatForms>();
 
-  const onSubmit: SubmitHandler<ChatForms> = ({ question, category }) => {
+  const onSubmit: SubmitHandler<ChatForms> = ( { question, category },  ) => {
+    if(!category){
+      setValue("response", "Please choose a category")
+      return;
+    }
     setValue("response", "Loading...");
     axios
       .post(
@@ -29,6 +33,10 @@ export default function Home() {
       .then((res) => setValue("response", res.data.answer))
       .catch((error) => setValue("response", JSON.stringify(error)));
   };
+
+  const onInValid: SubmitErrorHandler<ChatForms> = ({ question }) => {
+    setValue("response", "Please enter a question")
+  }
 
   return (
     <div className="w-full h-full bg-white flex-col justify-center items-center inline-flex">
@@ -59,10 +67,10 @@ export default function Home() {
         </div>
       </nav>
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(onSubmit, onInValid)}
         className="w-full h-full p-6 bg-white flex-col justify-center items-center gap-8 flex"
       >
-        <div className="w-[1200px] h-[500px] flex-col justify-start items-start gap-6 flex">
+        <div className="w-[1200px] h-[500px] px-10 py-5 flex-col bg-zinc-100 justify-start items-start gap-6 flex rounded-lg">
           <div className="self-stretch text-black text-[64px] font-bold font-['Inter']">
             BIT-LLM
           </div>
@@ -124,15 +132,15 @@ export default function Home() {
             </div>
           )}
         </div>
-        <div className="w-[1150px] h-10 px-4 py-2 bg-white rounded-lg border border-neutral-200 justify-start items-center gap-4 inline-flex">
+        <div className="w-[1200px] h-10 px-4 py-2 bg-white rounded-lg border border-neutral-200 justify-start items-center gap-4 inline-flex">
           <input
             type="text"
             {...register("question", { required: true })}
             className="w-full h-7 text-zinc-500 text-base font-normal font-['Inter'] leading-normal"
           />
-          <div className="w-6 h-6 relative"></div>
-          <div className="w-6 h-6 relative"></div>
-          <div className="w-6 h-6 relative"></div>
+          <img src="/camera.png" className="w-7 h-7 relative"></img>
+          <img src="/word.png" className="w-7 h-7 relative"></img>
+          <img src="/position.png" className="w-7 h-7 relative"></img>
           <div className="w-[60px] h-8 px-6 py-3.5 bg-black rounded-lg shadow justify-center items-center gap-2 flex">
             <button
               type="submit"
