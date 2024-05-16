@@ -7,10 +7,10 @@ class Datasets:
     __fname: str = ""
     __dname: str = ""
     __sname: str = ""
-    __id: str = ""
-    __label: str = ""
     __train: pd.DataFrame = None
     __test: pd.DataFrame = None
+    __id: pd.DataFrame = None
+    __label: pd.DataFrame = None
 
     @property
     def context(self) -> str:    return self.__context
@@ -49,13 +49,13 @@ class Datasets:
     def test(self, test:pd.DataFrame): self.__test = test
 
     @property
-    def id(self) -> str:    return self.__id
+    def id(self) -> pd.DataFrame:    return self.__id
 
     @id.setter
-    def id(self, id:str): self.__id = id
+    def id(self, id:pd.DataFrame): self.__id = id
 
     @property
-    def label(self) -> str:    return self.__label
+    def label(self) -> pd.DataFrame:    return self.__label
 
     @label.setter
-    def label(self, label:str): self.__label = label
+    def label(self, label:pd.DataFrame): self.__label = label

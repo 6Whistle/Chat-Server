@@ -9,5 +9,4 @@ router = APIRouter()
 
 @router.post("/chat/titanic")
 async def titanic(req:Request):
-    TitanicService().process()
-    return Response(answer="The count of survived people is 342.")
+    return Response(answer=f"The accuracy of Titanic model is {TitanicService().preprocess()}%")
