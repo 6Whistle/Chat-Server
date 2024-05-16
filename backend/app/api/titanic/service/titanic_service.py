@@ -17,10 +17,10 @@ class TitanicService:
         print(f'Preprocess Done')
         return self.model
     
-    def modeling(self, model_name:str):
+    def modeling(self, model_name:str) -> object:
         return {"DT": DecisionTreeClassifier(), "RF": RandomForestClassifier(), "NB": GaussianNB(), "KNN": KNeighborsClassifier(), "SVM": SVC()}.get(model_name, DecisionTreeClassifier())
 
-    def learning(self, model_type, model_name:str):
+    def learning(self, model_type, model_name:str) -> float:
         print(f'{model_name} Algorithm accuracy is ')
         return self.model.learning(model_type)
     

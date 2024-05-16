@@ -120,13 +120,13 @@ class TitanicModel:
     @staticmethod
     def create_k_fold():
         return KFold(n_splits=10, shuffle=True, random_state=0)
+
+    def get_accuracy(self, this:Datasets, model_type:object, k_fold:KFold) -> float:
+        score = cross_val_score(model_type, this.train, this.label, cv=k_fold, n_jobs=1, scoring='accuracy')
+        return round(np.mean(score)*100, 2)
     
-    def learning(self, model_type) -> Models:
+    def learning(self, model_type:object) -> Models:
         k_fold = self.create_k_fold()
         accuarcy = self.get_accuracy(self.dataset, model_type, k_fold)
         ic(accuarcy)
         return accuarcy
-
-    def get_accuracy(self, this:Datasets, model_type, k_fold:KFold) -> float:
-        score = cross_val_score(model_type, this.train, this.label, cv=k_fold, n_jobs=1, scoring='accuracy')
-        return round(np.mean(score)*100, 2)
