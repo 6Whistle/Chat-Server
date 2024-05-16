@@ -36,10 +36,10 @@ class TitanicModel:
         this = self.drop_feature(this, 'Name', 'Age', 'Fare', 'SibSp', 'Parch', 'Ticket', 'Cabin', 'Sex')
         this.train = this.train.drop(['Survived'], axis=1)
 
-        self.df_info(this)
+        # self.df_info(this)
 
-        ic(this.train)
-        ic(this.test)
+        # ic(this.train)
+        # ic(this.test)
 
         return this
 
@@ -121,13 +121,12 @@ class TitanicModel:
     def create_k_fold():
         return KFold(n_splits=10, shuffle=True, random_state=0)
     
-    def learning(self, train_fname:str, test_fname:str) -> Models:
-        this = self.preprocess(train_fname, test_fname)
+    def learning(self, model_type) -> Models:
         k_fold = self.create_k_fold()
-        accuarcy = self.get_accuracy(this, k_fold)
+        accuarcy = self.get_accuracy(self.dataset, model_type, k_fold)
         ic(accuarcy)
         return accuarcy
 
-    def get_accuracy(self, this:Datasets, k_fold:KFold) -> float:
-        score = cross_val_score(RandomForestClassifier(), this.train, this.label, cv=k_fold, n_jobs=1, scoring='accuracy')
+    def get_accuracy(self, this:Datasets, model_type, k_fold:KFold) -> float:
+        score = cross_val_score(model_type, this.train, this.label, cv=k_fold, n_jobs=1, scoring='accuracy')
         return round(np.mean(score)*100, 2)

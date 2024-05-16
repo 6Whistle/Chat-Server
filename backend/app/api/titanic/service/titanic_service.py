@@ -2,6 +2,11 @@ from dataclasses import dataclass
 import os
 import numpy as np
 import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC
+from sklearn.tree import DecisionTreeClassifier
 from app.api.titanic.model.titanic_model import TitanicModel
 
 class TitanicService:
@@ -12,16 +17,12 @@ class TitanicService:
         print(f'Preprocess Done')
         return self.model
     
-    def modeling(self):
-        print(f'Modeling Done')
+    def modeling(self, model_name:str):
+        return {"DT": DecisionTreeClassifier(), "RF": RandomForestClassifier(), "NB": GaussianNB(), "KNN": KNeighborsClassifier(), "SVM": SVC()}.get(model_name, DecisionTreeClassifier())
 
-    def learning(self):
-        print(f'DescisionTree Algorithm accuracy is ')
-        print(f'RandomForest Algorithm accuracy is ')
-        print(f'NavieBayes Algorithm accuracy is ')
-        print(f'KNN Algorithm accuracy is ')
-        print(f'SVM Algorithm accuracy is ')
-        print(f'Learning Done')
+    def learning(self, model_type, model_name:str):
+        print(f'{model_name} Algorithm accuracy is ')
+        return self.model.learning(model_type)
     
     def postprocess(self):
         print(f'Postprocess Done')
