@@ -6,10 +6,10 @@ import {
   set,
   useForm,
 } from "react-hook-form";
-import ImageButton, { buttonImagesUrl } from "./atomic/image_button";
-import TextInput from "./atomic/text_input";
-import { url } from "inspector";
 import Header from "./component/header";
+import RadioButton, { radioButtonList } from "./atomic/chat/radio_button";
+import ChatInput from "./component/chat_input";
+import ChatOutput from "./component/chat_output";
 
 type ChatForms = {
   response: string;
@@ -43,91 +43,22 @@ export default function Home() {
       .catch((error) => setValue("response", JSON.stringify(error)));
   };
 
-  const onInValid: SubmitErrorHandler<ChatForms> = ({ question }) => {
+  const onInValid: SubmitErrorHandler<ChatForms> = () => {
     setValue("response", "Please enter a question");
   };
 
   return (
     <div className="w-full h-full bg-white flex-col justify-center items-center flex">
-      {Header()}
+      <Header />
       <form
         onSubmit={handleSubmit(onSubmit, onInValid)}
         className="w-full h-full p-6 bg-white flex-col justify-center items-center gap-8 flex"
       >
-        <div className="w-5/6 h-[500px] px-10 py-5 flex-col bg-zinc-100 justify-start items-start gap-6 flex rounded-lg">
-          <div className="self-stretch text-black text-[64px] font-bold font-['Inter']">
-            BIT-LLM
-          </div>
-          <div className="self-stretch text-zinc-500 text-2xl font-normal font-['Inter'] leading-9">
-            Ask everything to BIT-LLM
-          </div>
-          <div className="self-stretch text-black text-xl font-medium font-['Inter'] leading-[30px]">
-            {watch("response")}
-          </div>
-        </div>
-
-        <div className="w-[255px] h-14 p-2 bg-neutral-100 rounded-xl justify-center items-start gap-2 inline-flex">
-          {watch("category") === "Titanic" ? (
-            <div className="px-4 py-2 bg-white rounded-lg justify-center items-center gap-2 flex">
-              <div className="text-black text-base font-medium font-['Inter'] leading-normal">
-                Titanic
-              </div>
-            </div>
-          ) : (
-            <div className="px-4 py-2 bg-neutral-100 rounded-lg justify-center items-center gap-2 flex">
-              <input
-                type="submit"
-                onClick={() => setValue("category", "Titanic")}
-                value="Titanic"
-                className="text-black text-base font-medium font-['Inter'] leading-normal"
-              />
-            </div>
-          )}
-          {watch("category") === "AI" ? (
-            <div className="px-4 py-2 bg-white rounded-lg justify-center items-center gap-2 flex">
-              <div className="text-black text-base font-medium font-['Inter'] leading-normal">
-                AI
-              </div>
-            </div>
-          ) : (
-            <div className="px-4 py-2 bg-neutral-100 rounded-lg justify-center items-center gap-2 flex">
-              <input
-                type="submit"
-                onClick={() => setValue("category", "AI")}
-                value="AI"
-                className="text-black text-base font-medium font-['Inter'] leading-normal"
-              />
-            </div>
-          )}
-          {watch("category") === "Tab 2" ? (
-            <div className="px-4 py-2 bg-white rounded-lg justify-center items-center gap-2 flex">
-              <div className="text-black text-base font-medium font-['Inter'] leading-normal">
-                Tab 2
-              </div>
-            </div>
-          ) : (
-            <div className="px-4 py-2 bg-neutral-100 rounded-lg justify-center items-center gap-2 flex">
-              <input
-                type="submit"
-                onClick={() => setValue("category", "Tab 2")}
-                value="Tab 2"
-                className="text-black text-base font-medium font-['Inter'] leading-normal"
-              />
-            </div>
-          )}
-        </div>
-        <div className="w-5/6 h-10 px-4 py-2 bg-white rounded-lg border border-neutral-200 justify-start items-center gap-3 flex">
-          {TextInput(register, "question")}
-          {buttonImagesUrl.map((url) => ImageButton(url))}
-          <div className="w-[60px] h-8 px-6 py-3.5 bg-black rounded-lg shadow justify-center items-center gap-2 flex">
-            <button
-              type="submit"
-              className="text-white text-base font-medium font-['Inter'] leading-normal"
-            >
-              Send
-            </button>
-          </div>
-        </div>
+        <ChatOutput title="BIT-LLM" subtitle="Ask everything to BIT-LLM" text={watch("response")} />
+        <ul className="w-5/6 grid gap-6 md:grid-cols-3">
+          {radioButtonList.map((radioButton, i) => <RadioButton key={i} title={radioButton.title} subtitle={radioButton.subtitle} value={radioButton.value} target={radioButton.target} setValue={setValue} />)}
+        </ul>
+        <ChatInput register={register} targetText="question" />
       </form>
     </div>
   );

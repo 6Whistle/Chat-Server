@@ -1,5 +1,4 @@
-from example.utils import Member
-
+from example import utils
 
 class Calculator:
     def __init__(self, a, opcode, b):
@@ -7,7 +6,7 @@ class Calculator:
         print('(ex) 5 + 4 = 9')
     
     def calculate(self):
-        a = Member.myRandom(1, 10)
-        b = Member.myRandom(1, 10)
-        op = {1: '+', 2: '-', 3: '*', 4: '/'}[Member.myRandom(1, 5)]
+        a = utils.myRandom(1, 10)
+        b = utils.myRandom(1, 10)
+        op = {1: '+', 2: '-', 3: '*', 4: '/'}[utils.myRandom(1, 5)]
         return f'{a} {op} {b} = {op == "+" and a+b or op == "-" and a-b or op == "*" and a*b or a/b}' 

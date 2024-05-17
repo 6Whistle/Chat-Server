@@ -8,8 +8,24 @@ class Grade:
         kor = myRandom(0,100)
         eng = myRandom(0, 100)
         math = myRandom(0, 100)
-        # sum = self.sum(kor, eng, math)
-        # avg = self.agv(kor, eng, math)
-        # grade = self.getGrade()
-        # passChk = self.passChk()
-        # return [sum, avg, grade, passChk]
+        sum = self.sum(kor, eng, math)
+        avg = self.avg(kor, eng, math)
+        grade = self.getGrade(avg)
+        passChk = self.passChk(avg)
+        return [sum, avg, grade, passChk] 
+
+    def sum(self, kor, eng, math) -> int:
+        return kor + eng + math
+    
+    def avg(self, kor, eng, math) -> float:
+        return (kor + eng + math) / 3
+    
+    def getGrade(self, avg) -> str:
+        if avg >= 90: return 'A'
+        elif avg >= 80: return 'B'
+        elif avg >= 70: return 'C'
+        elif avg >= 60: return 'D'
+        else: return 'F'
+    
+    def passChk(self, avg) -> bool:
+        return avg >= 70
