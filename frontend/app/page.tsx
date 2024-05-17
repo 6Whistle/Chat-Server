@@ -54,9 +54,22 @@ export default function Home() {
         onSubmit={handleSubmit(onSubmit, onInValid)}
         className="w-full h-full p-6 bg-white flex-col justify-center items-center gap-8 flex"
       >
-        <ChatOutput title="BIT-LLM" subtitle="Ask everything to BIT-LLM" text={watch("response")} />
+        <ChatOutput
+          title="BIT-LLM"
+          subtitle="Ask everything to BIT-LLM"
+          text={watch("response")}
+        />
         <ul className="w-5/6 grid gap-6 md:grid-cols-3">
-          {radioButtonList.map((radioButton, i) => <RadioButton key={i} title={radioButton.title} subtitle={radioButton.subtitle} value={radioButton.value} target={radioButton.target} setValue={setValue} />)}
+          {radioButtonList.map((radioButton, i) => (
+            <RadioButton
+              key={i}
+              title={radioButton.title}
+              subtitle={radioButton.subtitle}
+              value={radioButton.value}
+              target={radioButton.target}
+              setValue={setValue}
+            />
+          ))}
         </ul>
         <ChatInput register={register} targetText="question" />
       </form>

@@ -1,4 +1,3 @@
-import { register } from "module";
 import HeaderButton from "../atomic/header/header_button";
 import TabButton, { tabNames } from "../atomic/header/tab_button";
 
