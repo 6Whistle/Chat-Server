@@ -3,8 +3,8 @@ import TabButton, { tabNames } from "../atomic/header/tab_button";
 
 export default function Header() {
   return (
-    <nav className="w-full h-16 px-20 py-4 bg-white shadow border-b border-neutral-200 justify-start items-center flex">
-      <div className="text-black text-xl font-semibold font-['Inter'] leading-[30px] whitespace-nowrap">
+    <nav className="w-full h-16 px-20 py-4 bg-white shadow border-b-2 border-neutral-200 justify-start items-center flex">
+      <div className="text-black text-xl font-semibold font-['Inter'] whitespace-nowrap">
         6Whistle Blog
       </div>
       <div className="w-full justify-center items-center gap-8 flex">
