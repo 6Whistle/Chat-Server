@@ -62,6 +62,6 @@ async def chat(req:Request) -> Response:
 if __name__ == "__main__":
     import os
     import uvicorn
-    os.chdir(os.getcwd() + '/backend')
-    print(f'{os.getcwd()}')
+    # os.chdir(os.getcwd() + '/backend')
+    # print(f'{os.getcwd()}')
     uvicorn.run(app, host="localhost", port=8000)

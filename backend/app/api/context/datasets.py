@@ -3,7 +3,6 @@ import pandas as pd
 
 @dataclass
 class Datasets:
-    __context: str = ""
     __fname: str = ""
     __dname: str = ""
     __sname: str = ""
@@ -11,12 +10,6 @@ class Datasets:
     __test: pd.DataFrame = None
     __id: pd.DataFrame = None
     __label: pd.DataFrame = None
-
-    @property
-    def context(self) -> str:    return self.__context
-
-    @context.setter
-    def context(self, context:str): self.__context = context
 
     @property
     def fname(self) -> str:    return self.__fname
