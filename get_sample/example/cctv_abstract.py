@@ -13,11 +13,15 @@ class ReaderBase(PrinterBase):
         pass
 
     @abstractmethod    
-    def xls(self, file) -> pd.DataFrame:
+    def excel(self, file) -> pd.DataFrame:
         pass
 
     @abstractmethod
     def json(self, file) -> pd.DataFrame:
+        pass
+
+    @abstractmethod
+    def gmaps(self):
         pass
 
 class ScrapperBase(PrinterBase):

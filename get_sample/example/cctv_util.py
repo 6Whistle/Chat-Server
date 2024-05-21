@@ -29,10 +29,10 @@ class Reader(ReaderBase):
     def print(self, msg):
         ic(msg)
 
-    def csv(self, msg):
+    def csv(self, msg) -> pd.DataFrame:
         return pd.read_csv(f'{msg}.csv', encoding='utf-8', thousands=',')
 
-    def xls(self, file, headers, usecols) -> pd.DataFrame:
+    def excel(self, file, headers, usecols) -> pd.DataFrame:
         return pd.read_excel(f'{file}.xls', header=headers, usecols=usecols)
 
     def json(self, msg):
